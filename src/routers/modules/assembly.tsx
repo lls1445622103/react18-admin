@@ -1,3 +1,12 @@
+/*
+ * @Author: lls
+ * @Date: 2022-07-30 23:43:41
+ * @LastEditors: lls
+ * @LastEditTime: 2022-07-31 01:10:58
+ * @FilePath: \react18-admin\src\routers\modules\assembly.tsx
+ * @Description:
+ *
+ */
 import React from "react";
 import lazyLoad from "@/routers/utils/lazyLoad";
 import { LayoutIndex } from "@/routers/constant";
@@ -25,7 +34,7 @@ const assemblyRouter: Array<RouteObject> = [
 				element: lazyLoad(React.lazy(() => import("@/views/assembly/batchImport/index"))),
 				meta: {
 					requiresAuth: true,
-					title: "批量导入数据",
+					title: "导入数据",
 					key: "selectIcon"
 				}
 			}

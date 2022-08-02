@@ -1,10 +1,19 @@
+/*
+ * @Author: lls
+ * @Date: 2022-07-30 23:43:41
+ * @LastEditors: lls
+ * @LastEditTime: 2022-08-01 22:12:59
+ * @FilePath: \react18-admin\src\routers\index.tsx
+ * @Description:
+ *
+ */
 import { Navigate, useRoutes } from "react-router-dom";
 import { RouteObject } from "@/routers/interface";
 import Login from "@/views/login/index";
 
 // * 导入所有router
 const metaRouters = import.meta.globEager("./modules/*.tsx");
-
+console.log("metaRouters", metaRouters);
 // * 处理路由
 export const routerArray: RouteObject[] = [];
 Object.keys(metaRouters).forEach(item => {

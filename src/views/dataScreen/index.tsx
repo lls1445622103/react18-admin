@@ -1,8 +1,8 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
- * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-04 18:05:53
+ * @LastEditors: lls
+ * @LastEditTime: 2022-08-04 23:24:49
  * @FilePath: \react18-admin\src\views\dataScreen\index.tsx
  * @Description:
  *
@@ -16,12 +16,18 @@ const DataScreen = () => {
 	let config = {
 		formConfig: {},
 		formItem: [
-			{ type: "input", name: "test", label: "测试" },
-			{ type: "input", name: "test", label: "测试2" },
-			{ type: "input", name: "test", label: "测试2" },
-			{ type: "input", name: "test", label: "测试2" },
-			{ type: "input", name: "test", label: "测试2" },
-			{ type: "input", name: "test", label: "测试2" }
+			{ itemType: "Input", name: "test1", label: "测试" },
+			{ itemType: "DatePicker", name: "test2", label: "测试2" },
+			{ itemType: "RangePicker", name: "test3", label: "测试2" },
+			{
+				itemType: "Select ",
+				name: "test4",
+				label: "测试2",
+				options: [
+					{ label: "22", value: 1 },
+					{ label: "zs", value: "22222222222" }
+				]
+			}
 		],
 		buttons: [
 			{
@@ -63,7 +69,9 @@ const DataScreen = () => {
 			}
 		]
 	};
-	return <TableLayout LayoutForm={LayoutForm} LayoutTable={LayoutTable} LayoutTree={LayoutTree} config={config}></TableLayout>;
+	return (
+		<TableLayout LayoutForm={LayoutForm} LayoutTable={LayoutTable} LayoutTree={false && LayoutTree} config={config}></TableLayout>
+	);
 };
 
 export default DataScreen;

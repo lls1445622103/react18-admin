@@ -2,7 +2,7 @@
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
  * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-04 16:38:12
+ * @LastEditTime: 2022-08-04 18:05:53
  * @FilePath: \react18-admin\src\views\dataScreen\index.tsx
  * @Description:
  *
@@ -14,6 +14,15 @@ import LayoutTable from "@/components/LayoutTable";
 import LayoutForm from "@/components/LayoutForm";
 const DataScreen = () => {
 	let config = {
+		formConfig: {},
+		formItem: [
+			{ type: "input", name: "test", label: "测试" },
+			{ type: "input", name: "test", label: "测试2" },
+			{ type: "input", name: "test", label: "测试2" },
+			{ type: "input", name: "test", label: "测试2" },
+			{ type: "input", name: "test", label: "测试2" },
+			{ type: "input", name: "test", label: "测试2" }
+		],
 		buttons: [
 			{
 				label: "新增",

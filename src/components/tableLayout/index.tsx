@@ -2,7 +2,7 @@
  * @Author: lixiaoming
  * @Date: 2022-08-02 15:47:52
  * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-04 11:19:17
+ * @LastEditTime: 2022-08-04 17:38:28
  * @FilePath: \react18-admin\src\components\tablelayout\index.tsx
  * @Description:
  *
@@ -12,7 +12,7 @@ import "./index.less";
 import { useState } from "react";
 const Tablelayout = (props: any) => {
 	const { config, LayoutTree, LayoutForm, LayoutTable } = props;
-	const { buttons, columns, data } = config;
+	const { buttons, columns, data, formItem, formConfig } = config;
 	const [isOpen, setIsOpen] = useState(true);
 	const treeStyle = {
 		width: isOpen ? "20%" : "40px"
@@ -45,9 +45,9 @@ const Tablelayout = (props: any) => {
 			) : null}
 			{LayoutForm || LayoutTable ? (
 				<div className="contents">
-					{LayoutForm ? (
+					{LayoutForm && formItem ? (
 						<div className="form">
-							<LayoutForm />
+							<LayoutForm formItem={formItem} formConfig={formConfig} />{" "}
 						</div>
 					) : null}
 					{LayoutTable ? (

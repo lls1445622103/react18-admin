@@ -2,16 +2,16 @@
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
  * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-04 15:47:49
+ * @LastEditTime: 2022-08-04 16:38:12
  * @FilePath: \react18-admin\src\views\dataScreen\index.tsx
  * @Description:
  *
  */
 import { PoweroffOutlined } from "@ant-design/icons";
 import TableLayout from "@/components/tableLayout";
-import LayoutTree from "@/components/tableLayout/LayoutTree";
+import LayoutTree from "@/components/LayoutTree";
 import LayoutTable from "@/components/LayoutTable";
-import LayoutForm from "@/components/tableLayout/LayoutForm";
+import LayoutForm from "@/components/LayoutForm";
 const DataScreen = () => {
 	let config = {
 		buttons: [
@@ -54,14 +54,7 @@ const DataScreen = () => {
 			}
 		]
 	};
-	return (
-		<TableLayout
-			LayoutForm={false && LayoutForm}
-			LayoutTable={LayoutTable}
-			LayoutTree={false && LayoutTree}
-			config={config}
-		></TableLayout>
-	);
+	return <TableLayout LayoutForm={LayoutForm} LayoutTable={LayoutTable} LayoutTree={LayoutTree} config={config}></TableLayout>;
 };
 
 export default DataScreen;

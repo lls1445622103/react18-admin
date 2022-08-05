@@ -1,8 +1,8 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
- * @LastEditors: lls
- * @LastEditTime: 2022-08-04 23:24:49
+ * @LastEditors: lixiaoming
+ * @LastEditTime: 2022-08-05 15:30:04
  * @FilePath: \react18-admin\src\views\dataScreen\index.tsx
  * @Description:
  *
@@ -14,11 +14,28 @@ import LayoutTable from "@/components/LayoutTable";
 import LayoutForm from "@/components/LayoutForm";
 const DataScreen = () => {
 	let config = {
-		formConfig: {},
+		formConfig: {
+			// wrapperCol: { span: 8 },
+			resetForm: () => {
+				console.log("重置表单");
+			},
+			onFinish: (e: any) => {
+				console.log(e, "表单数据");
+			},
+			formButtonConfig: {
+				submitType: "search",
+				submitText: "搜索"
+			}
+		},
 		formItem: [
 			{ itemType: "Input", name: "test1", label: "测试" },
 			{ itemType: "DatePicker", name: "test2", label: "测试2" },
 			{ itemType: "RangePicker", name: "test3", label: "测试2" },
+			{ itemType: "Input", name: "test9", label: "测试" },
+			{ itemType: "DatePicker", name: "test8", label: "测试2" },
+			{ itemType: "RangePicker", name: "test7", label: "测试2" },
+			{ itemType: "DatePicker", name: "test81", label: "测试2" },
+			{ itemType: "RangePicker", name: "test72", label: "测试2" },
 			{
 				itemType: "Select ",
 				name: "test4",

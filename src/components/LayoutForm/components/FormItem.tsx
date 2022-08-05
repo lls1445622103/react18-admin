@@ -1,13 +1,13 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-04 17:17:56
- * @LastEditors: lls
- * @LastEditTime: 2022-08-04 23:00:41
+ * @LastEditors: lixiaoming
+ * @LastEditTime: 2022-08-05 14:58:41
  * @FilePath: \react18-admin\src\components\LayoutForm\components\FormItem.tsx
  * @Description:
  *
  */
-import { Form, Input, DatePicker, Select } from "antd";
+import { Form, Input, DatePicker, Select, Col } from "antd";
 const { RangePicker } = DatePicker;
 const FormItem = (props: any) => {
 	// 全部支持清除
@@ -32,6 +32,11 @@ const FormItem = (props: any) => {
 			Element = <Select {...props} />;
 			break;
 	}
-	return <Form.Item {...props}>{Element}</Form.Item>;
+	delete props.allowClear;
+	return (
+		<Col xxl={4} xl={6} lg={8} md={8} sm={8} xs={8}>
+			<Form.Item {...props}>{Element}</Form.Item>
+		</Col>
+	);
 };
 export default FormItem;

@@ -2,23 +2,20 @@
  * @Author: lixiaoming
  * @Date: 2022-08-02 15:47:52
  * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-04 17:38:28
+ * @LastEditTime: 2022-08-05 17:46:22
  * @FilePath: \react18-admin\src\components\tablelayout\index.tsx
- * @Description:
+ * @Description: 页面模板
  *
  */
 import { RightSquareTwoTone, LeftSquareTwoTone } from "@ant-design/icons";
 import "./index.less";
 import { useState } from "react";
 const Tablelayout = (props: any) => {
-	const { config, LayoutTree, LayoutForm, LayoutTable } = props;
-	const { buttons, columns, data, formItem, formConfig } = config;
+	const { config, LayoutTree, LayoutForm, LayoutTable, buttonsHandle } = props;
+	const { buttons, columns, data, formItem, formConfig, pagination, tableChange, tableConfig } = config;
 	const [isOpen, setIsOpen] = useState(true);
 	const treeStyle = {
 		width: isOpen ? "20%" : "40px"
-	};
-	const buttonsHandle = (e: any) => {
-		console.log("buttonsHandle", e);
 	};
 	const treeContentStyle = isOpen
 		? {}
@@ -52,7 +49,15 @@ const Tablelayout = (props: any) => {
 					) : null}
 					{LayoutTable ? (
 						<div className="table">
-							<LayoutTable columns={columns} data={data} buttons={buttons} buttonsHandle={buttonsHandle} />
+							<LayoutTable
+								tableConfig={tableConfig}
+								tableChange={tableChange}
+								pagination={pagination}
+								columns={columns}
+								data={data}
+								buttons={buttons}
+								buttonsHandle={buttonsHandle}
+							/>
 						</div>
 					) : null}
 				</div>

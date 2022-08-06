@@ -1,18 +1,19 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
- * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-05 18:00:57
+ * @LastEditors: lls
+ * @LastEditTime: 2022-08-06 22:59:35
  * @FilePath: \react18-admin\src\views\dataScreen\index.tsx
  * @Description:
  *
  */
 import { useState } from "react";
-import { PoweroffOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import TableLayout from "@/components/tableLayout";
 import LayoutTree from "@/components/LayoutTree";
 import LayoutTable from "@/components/LayoutTable";
 import LayoutForm from "@/components/LayoutForm";
+import { Space } from "antd";
 const DataScreen = () => {
 	const [page, setPage] = useState({
 		total: 21, // 总页数
@@ -90,7 +91,7 @@ const DataScreen = () => {
 				label: "新增",
 				type: "primary",
 				role: "add",
-				icon: <PoweroffOutlined />
+				icon: <PlusOutlined />
 			}
 		],
 		data: [
@@ -129,16 +130,17 @@ const DataScreen = () => {
 			{
 				title: "操作",
 				// dataIndex: "address2",
-				key: "action",
 				align: "center",
 				render: (text: any, record: any, index: any) => {
-					console.log("	", text);
+					// 数据参数分别为当前行的值，当前行数据，行索引
+					console.log("text", text);
+					console.log("record", record);
+					console.log("index", index);
 					return (
-						<div>
-							{/* <div>{text}</div> */}
-							<div>{record}</div>
-							<div>{index}</div>
-						</div>
+						<Space size="middle">
+							<a>编辑 </a>
+							<a style={{ color: "red" }}>删除</a>
+						</Space>
 					);
 				}
 			}

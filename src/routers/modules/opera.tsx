@@ -2,7 +2,7 @@
  * @Author: lls
  * @Date: 2022-08-01 22:14:34
  * @LastEditors: lls
- * @LastEditTime: 2022-08-01 22:16:47
+ * @LastEditTime: 2022-08-07 11:31:31
  * @FilePath: \react18-admin\src\routers\modules\opera.tsx
  * @Description:
  *
@@ -25,7 +25,7 @@ const dashboardRouter: Array<RouteObject> = [
 				element: lazyLoad(React.lazy(() => import("@/views/opera/user/index"))),
 				meta: {
 					requiresAuth: true,
-					title: "数据可视化",
+					title: "用户列表",
 					key: "user"
 				}
 			},

@@ -1,20 +1,28 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-03 10:38:06
- * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-05 17:45:37
+ * @LastEditors: lls
+ * @LastEditTime: 2022-08-07 14:16:58
  * @FilePath: \react18-admin\src\components\LayoutTable\index.tsx
  * @Description: 通用表格封装
  *
  */
 
 import "./index.less";
-import { Table } from "antd";
+import { Table, Space } from "antd";
 import Buttons from "@/components/Buttons/index";
 const LayoutTable = (props: any) => {
 	let { buttons, data, columns, buttonsHandle, pagination, tableChange, tableConfig } = props;
+	columns.unshift({
+		title: "序号",
+		align: "center",
+		width: 60,
+		render: (text: any, record: any, index: any) => {
+			// 数据参数分别为当前行的值，当前行数据，行索引
+			return <Space size="middle">{index}</Space>;
+		}
+	});
 	pagination = pagination || false;
-	console.log("pagination", pagination);
 	return (
 		<div className="l-table-content">
 			{buttons ? <Buttons buttons={buttons} buttonsHandle={buttonsHandle} /> : null}

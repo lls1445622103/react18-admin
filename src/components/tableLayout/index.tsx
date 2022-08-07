@@ -44,7 +44,7 @@ const Tablelayout = (props: any) => {
 				<div className="contents">
 					{LayoutForm && formItem ? (
 						<div className="form">
-							<LayoutForm formItem={formItem} formConfig={formConfig} />{" "}
+							<LayoutForm formItem={formItem} formConfig={formConfig} />
 						</div>
 					) : null}
 					{LayoutTable ? (

@@ -1,8 +1,8 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-03 10:38:06
- * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-05 15:30:11
+ * @LastEditors: lls
+ * @LastEditTime: 2022-08-07 09:52:17
  * @FilePath: \react18-admin\src\components\LayoutForm\index.tsx
  * @Description: 模板表单组件的封装
  *
@@ -28,14 +28,14 @@ const LayoutForm = (props: any) => {
 	const formReset = () => {
 		resetForm ? resetForm() : null;
 	};
-
+	let gutter = { xs: 8, sm: 16, md: 24, lg: 32 };
 	// 配置表单默认值
-	// formConfig["layout"] = "inline";
+	console.log("gutter", gutter);
 	return (
 		<div className="LF-container">
 			<Form {...formConfig}>
-				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-					{formItem ? formItem.map((e: any, index: Number) => <FormItem key={index} {...e} />) : null}
+				<Row gutter={gutter}>
+					{formItem ? formItem.map((e: any, index: Number) => <FormItem key={index} submitType={submitType} {...e} />) : null}
 				</Row>
 				<div className="LF-submit">
 					<Button className="search" type="primary" htmlType="submit">

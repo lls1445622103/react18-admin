@@ -2,26 +2,30 @@
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
  * @LastEditors: lls
- * @LastEditTime: 2022-08-06 22:59:35
+ * @LastEditTime: 2022-08-07 10:51:37
  * @FilePath: \react18-admin\src\views\dataScreen\index.tsx
  * @Description:
  *
  */
 import { useState } from "react";
+import { Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import TableLayout from "@/components/tableLayout";
 import LayoutTree from "@/components/LayoutTree";
 import LayoutTable from "@/components/LayoutTable";
 import LayoutForm from "@/components/LayoutForm";
-import { Space } from "antd";
+import ModalForm from "@/components/ModalForm";
+
 const DataScreen = () => {
+	const [modelShow, setModelShow] = useState(true);
 	const [page, setPage] = useState({
 		total: 21, // 总页数
 		current: 1, // 当前页码
 		pageSize: 10 // 每页数据条数
 	});
 	const buttonsHandle = (e: any) => {
-		console.log("buttonsHandle", e);
+		setModelShow(true);
+		console.log("buttonsHandle", setModelShow, e);
 	};
 	let config = {
 		// 表格内的分页、排序、筛选变化时触发
@@ -52,7 +56,6 @@ const DataScreen = () => {
 			// }
 		},
 		formConfig: {
-			// wrapperCol: { span: 8 },
 			resetForm: () => {
 				console.log("重置表单");
 
@@ -70,12 +73,6 @@ const DataScreen = () => {
 		formItem: [
 			{ itemType: "Input", name: "test1", label: "测试" },
 			{ itemType: "DatePicker", name: "test2", label: "测试2" },
-			// { itemType: "RangePicker", name: "test3", label: "测试2" },
-			// { itemType: "Input", name: "test9", label: "测试" },
-			// { itemType: "DatePicker", name: "test8", label: "测试2" },
-			// { itemType: "RangePicker", name: "test7", label: "测试2" },
-			// { itemType: "DatePicker", name: "test81", label: "测试2" },
-			// { itemType: "RangePicker", name: "test72", label: "测试2" },
 			{
 				itemType: "Select ",
 				name: "test4",
@@ -146,14 +143,56 @@ const DataScreen = () => {
 			}
 		]
 	};
+
+	const modalConfig = {
+		modelShow: modelShow,
+		setModelShow: setModelShow,
+		destroyOnClose: true,
+		maskClosable: false,
+		onCancel: () => {
+			setModelShow(false);
+		}
+	};
+	const modalFormItem: any = [
+		{ itemType: "Input", name: "test1", label: "测试" },
+		{ itemType: "DatePicker", name: "test2", label: "测试2" },
+		{
+			itemType: "Select ",
+			name: "test4",
+			label: "测试2",
+			options: [
+				{ label: "22", value: 1 },
+				{ label: "zs", value: "22222222222" }
+			]
+		}
+	];
+	const modalFormConfig = {
+		resetForm: () => {
+			console.log("重置表单");
+
+			(config.pagination as any)["current"] = 1;
+			(config.pagination as any)["total"] = 50;
+		},
+		onFinish: (e: any) => {
+			setModelShow(false);
+			console.log(e, "表单数据");
+		},
+		formButtonConfig: {
+			submitType: "submit",
+			submitText: "提交"
+		}
+	};
 	return (
-		<TableLayout
-			buttonsHandle={buttonsHandle}
-			LayoutForm={LayoutForm}
-			LayoutTable={LayoutTable}
-			LayoutTree={false && LayoutTree}
-			config={config}
-		></TableLayout>
+		<>
+			<TableLayout
+				buttonsHandle={buttonsHandle}
+				LayoutForm={LayoutForm}
+				LayoutTable={LayoutTable}
+				LayoutTree={false && LayoutTree}
+				config={config}
+			></TableLayout>
+			<ModalForm modalConfig={modalConfig} formItem={modalFormItem} modalFormConfig={modalFormConfig} />
+		</>
 	);
 };
 

@@ -2,7 +2,7 @@
  * @Author: lls
  * @Date: 2022-08-01 22:14:34
  * @LastEditors: lls
- * @LastEditTime: 2022-08-07 11:31:31
+ * @LastEditTime: 2022-08-07 23:20:13
  * @FilePath: \react18-admin\src\routers\modules\opera.tsx
  * @Description:
  *
@@ -45,6 +45,15 @@ const dashboardRouter: Array<RouteObject> = [
 					requiresAuth: true,
 					title: "字典管理",
 					key: "dict"
+				}
+			},
+			{
+				path: "/opera/order",
+				element: lazyLoad(React.lazy(() => import("@/views/opera/order/index"))),
+				meta: {
+					requiresAuth: true,
+					title: "订单管理",
+					key: "order"
 				}
 			}
 		]

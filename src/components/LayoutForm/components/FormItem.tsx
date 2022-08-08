@@ -1,8 +1,8 @@
 /*
  * @Author: lixiaoming
  * @Date: 2022-08-04 17:17:56
- * @LastEditors: lls
- * @LastEditTime: 2022-08-07 09:57:22
+ * @LastEditors: lixiaoming
+ * @LastEditTime: 2022-08-08 10:58:35
  * @FilePath: \react18-admin\src\components\LayoutForm\components\FormItem.tsx
  * @Description:
  *
@@ -18,6 +18,7 @@ const FormItem = (props: any) => {
 	placeholder = placeholder ? placeholder : `请选择的${props.label}`;
 	const { itemType } = props;
 	let Element = null;
+	delete props.submitType;
 	switch (itemType) {
 		case "Input":
 			Element = <Input {...props} />;

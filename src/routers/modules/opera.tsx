@@ -1,8 +1,8 @@
 /*
  * @Author: lls
  * @Date: 2022-08-01 22:14:34
- * @LastEditors: lls
- * @LastEditTime: 2022-08-07 23:20:13
+ * @LastEditors: lixiaoming
+ * @LastEditTime: 2022-08-08 17:43:30
  * @FilePath: \react18-admin\src\routers\modules\opera.tsx
  * @Description:
  *
@@ -36,6 +36,15 @@ const dashboardRouter: Array<RouteObject> = [
 					requiresAuth: true,
 					title: "仓库管理",
 					key: "warehouse"
+				}
+			},
+			{
+				path: "/opera/inventory",
+				element: lazyLoad(React.lazy(() => import("@/views/opera/warehouse/inventory"))),
+				meta: {
+					// requiresAuth: true,
+					title: "库存",
+					key: "inventory"
 				}
 			},
 			{

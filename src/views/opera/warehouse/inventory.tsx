@@ -2,13 +2,13 @@
  * @Author: lixiaoming
  * @Date: 2022-08-02 13:27:46
  * @LastEditors: lixiaoming
- * @LastEditTime: 2022-08-08 17:43:12
- * @FilePath: \react18-admin\src\views\opera\warehouse\index.tsx
+ * @LastEditTime: 2022-08-08 17:55:26
+ * @FilePath: \react18-admin\src\views\opera\warehouse\inventory.tsx
  * @Description:
  *
  */
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import TableLayout from "@/components/tableLayout";
@@ -16,10 +16,9 @@ import LayoutTree from "@/components/LayoutTree";
 import LayoutTable from "@/components/LayoutTable";
 import LayoutForm from "@/components/LayoutForm";
 import ModalForm from "@/components/ModalForm";
-import { getDictList, editDictList, deleDictList } from "@/api/opera/dict";
+import { getUserList, editUserList } from "@/api/opera/user";
 
-const DataScreen = () => {
-	const navigage = useNavigate();
+const Order = () => {
 	const [modelShow, setModelShow] = useState(false);
 	const [page, setPage] = useState({
 		total: 2, // 总页数
@@ -29,36 +28,54 @@ const DataScreen = () => {
 	const [list, setList] = useState([
 		{
 			key: "1",
-			name: "成都仓库1",
-			time: "2022-1-7 13:12:56",
-			city: "成都"
+			name: "胡彦斌",
+			time: "2022-3-5 13:12:56",
+			address: "西湖区湖底公园1号",
+			cardType: "A类",
+			yearMoney: 600,
+			city: "成都",
+			position: "35.5,96.2",
+			phone: "18977276372",
+			toy: "小卡车",
+			num: "01",
+			state: "已送达",
+			total: 20
 		},
 		{
 			key: "2",
-			name: "德阳仓库1",
+			name: "张三",
 			time: "2022-4-7 13:12:56",
-			city: "德阳"
+			age: 42,
+			address: "西湖区湖底公园1号",
+			cardType: "C类",
+			yearMoney: 600,
+			city: "德阳",
+			position: "35.4,96.1",
+			phone: "13977276373",
+			toy: "积木",
+			num: "02",
+			state: "派送中",
+			total: 30
 		}
 	]);
+	let [pageParams] = useSearchParams();
+	let id = pageParams.get("id");
+	console.log("id", id);
 	useEffect(() => {
 		getList({}, page);
 	}, []);
 	const getList = async (form: any, page: any) => {
 		const params = { ...form, ...page };
-		// let res = await getDictList(params);
+		// let res = await getUserList(params);
 		// setList()
 		// setPage
 	};
-	const editDict = async (row: any) => {
+	const editList = async (row: any) => {
 		console.log("row", row);
-		// let res = await editDictList(row);
+		// let res = await editUserList(row);
 		getList({}, page);
 	};
-	const deleDict = async (id: string) => {};
-	const lookWarehouse = async (row: any) => {
-		console.log("row", row);
-		navigage("/opera/inventory?id=1001");
-	};
+
 	const buttonsHandle = (e: any) => {
 		setModelShow(true);
 		console.log("buttonsHandle", setModelShow, e);
@@ -89,6 +106,8 @@ const DataScreen = () => {
 		},
 		formConfig: {
 			resetForm: () => {
+				console.log("重置表单");
+
 				(config.pagination as any)["current"] = 1;
 				(config.pagination as any)["total"] = 50;
 			},
@@ -101,49 +120,68 @@ const DataScreen = () => {
 			}
 		},
 		formItem: [
-			{ itemType: "Input", name: "test1", label: "姓名" },
-			{ itemType: "Select", name: "test2", label: "所属城市" }
+			{ itemType: "Input", name: "test1", label: "玩具名称" },
+			{
+				itemType: "Select ",
+				name: "test5",
+				label: "玩具类型",
+				options: [
+					{ label: "A类", value: 1 },
+					{ label: "B类", value: 2 },
+					{ label: "C类", value: 3 }
+				]
+			}
+			// {
+			// 	itemType: "Select ",
+			// 	name: "test5",
+			// 	label: "城市",
+			// 	options: [
+			// 		{ label: "成都", value: 1 },
+			// 		{ label: "德阳", value: 2 }
+			// 	]
+			// }
 		],
 		buttons: [
 			{
 				label: "新增",
-				role: "add",
 				type: "primary",
+				role: "add",
 				icon: <PlusOutlined />
 			}
 		],
 		data: list,
 		columns: [
 			{
-				title: "仓库名称",
-				dataIndex: "name",
+				title: "玩具名称",
+				dataIndex: "toy",
 				align: "center"
 			},
 			{
-				title: "所属城市",
-				dataIndex: "city",
-				align: "center"
-			},
-			{
-				title: "最后一次入库时间",
+				title: "最近一次入库时间",
 				dataIndex: "time",
 				key: "time",
 				align: "center"
 			},
 			{
+				title: "玩具类型",
+				dataIndex: "cardType",
+				align: "center"
+			},
+			{
+				title: "库存数量",
+				dataIndex: "total",
+				align: "center"
+			},
+			{
 				title: "操作",
+				// dataIndex: "address2",
 				align: "center",
 				render: (text: any, record: any, index: any) => {
 					// 数据参数分别为当前行的值，当前行数据，行索引
 					return (
 						<Space size="middle">
-							<a onClick={() => editDict(record)}>编辑 </a>
-							<a onClick={() => lookWarehouse(record)} style={{ color: "green" }}>
-								查看库存
-							</a>
-							<a onClick={() => deleDict("222")} style={{ color: "red" }}>
-								删除
-							</a>
+							<a onClick={() => editList(record)}>编辑库存 </a>
+							{/* <a style={{ color: "red" }}>删除</a> */}
 						</Space>
 					);
 				}
@@ -161,12 +199,22 @@ const DataScreen = () => {
 		}
 	};
 	const modalFormItem: any = [
-		{ itemType: "Input", name: "ccc", label: "仓库名称" },
-		{ itemType: "Select", name: "test2", label: "所属城市" }
+		{ itemType: "Input", name: "姓名", label: "姓名" },
+		{ itemType: "DatePicker", name: "test2", label: "测试2" },
+		{
+			itemType: "Select ",
+			name: "test4",
+			label: "姓名",
+			options: [
+				{ label: "22", value: 1 },
+				{ label: "zs", value: "22222222222" }
+			]
+		}
 	];
 	const modalFormConfig = {
 		resetForm: () => {
 			console.log("重置表单");
+
 			(config.pagination as any)["current"] = 1;
 			(config.pagination as any)["total"] = 50;
 			getList({}, page);
@@ -195,4 +243,4 @@ const DataScreen = () => {
 	);
 };
 
-export default DataScreen;
+export default Order;
